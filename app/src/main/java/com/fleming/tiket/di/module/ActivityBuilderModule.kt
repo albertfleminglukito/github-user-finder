@@ -1,6 +1,6 @@
 package com.fleming.tiket.di.module
 
-import com.fleming.tiket.ui.MainActivity
+import com.fleming.tiket.ui.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

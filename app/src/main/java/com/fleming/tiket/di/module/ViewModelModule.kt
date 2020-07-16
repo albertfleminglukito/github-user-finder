@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fleming.tiket.di.ViewModelFactory
 import com.fleming.tiket.di.scope.ViewModelKey
-import com.fleming.tiket.ui.MainViewModel
+import com.fleming.tiket.ui.main.MainViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
