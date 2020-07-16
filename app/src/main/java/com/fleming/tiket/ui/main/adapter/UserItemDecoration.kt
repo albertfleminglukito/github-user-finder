@@ -7,7 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.fleming.tiket.R
 
-class AccountItemDecoration(resources: Resources) : RecyclerView.ItemDecoration() {
+class UserItemDecoration(resources: Resources) : RecyclerView.ItemDecoration() {
 
     private val sideMargin: Int = resources.getDimensionPixelSize(R.dimen.default_side_margin)
     private val verticalMargin: Int = resources.getDimensionPixelSize(R.dimen.default_vertical_margin)

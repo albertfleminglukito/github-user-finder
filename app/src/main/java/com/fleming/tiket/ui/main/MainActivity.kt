@@ -8,14 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fleming.tiket.R
 import com.fleming.tiket.ui.base.BaseActivity
-import com.fleming.tiket.ui.main.adapter.AccountItemDecoration
-import com.fleming.tiket.ui.main.adapter.AccountListAdapter
+import com.fleming.tiket.ui.main.adapter.UserItemDecoration
+import com.fleming.tiket.ui.main.adapter.UserListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
     private lateinit var mViewModel: MainViewModel
-    private val mAdapter: AccountListAdapter by lazy { AccountListAdapter() }
+    private val mAdapter: UserListAdapter by lazy { UserListAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +24,27 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         mViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         initViewModelObserver()
-        mViewModel.loadUsers()
     }
     private fun initView() {
         rvAccounts?.run {
-            addItemDecoration(AccountItemDecoration(context.resources))
+            addItemDecoration(UserItemDecoration(context.resources))
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = mAdapter
         }
         btnSearch?.setOnClickListener {
-            mViewModel.loadUsers(etSearch.text.toString())
+            mViewModel.refreshSearch(etSearch.text.toString())
         }
     }
 
     private fun initViewModelObserver() {
-        mViewModel.accounts.observe(this, Observer {
+        mViewModel.users.observe(this, Observer {
             mAdapter.submitList(it)
         })
         mViewModel.loadingState.observe(this, Observer { show ->
             if (show) loadingBar.visibility = View.VISIBLE
             else loadingBar.visibility = View.GONE
         })
-        mViewModel.showMessage.observe(this, Observer {
+        mViewModel.errorState.observe(this, Observer {
             Toast.makeText(this, R.string.message_get_user_error, Toast.LENGTH_SHORT).show()
         })
     }

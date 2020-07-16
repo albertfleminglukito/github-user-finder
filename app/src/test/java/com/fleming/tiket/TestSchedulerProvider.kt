@@ -1,4 +1,4 @@
-package com.fleming.tiket.ui
+package com.fleming.tiket
 
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 
