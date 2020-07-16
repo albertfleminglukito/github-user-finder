@@ -16,11 +16,14 @@ class GetUsersUseCase @Inject constructor(
             return Single.error(Throwable(ERROR_KEYWORD_EMPTY))
         }
         return userRepository.getUserList(keyword, page)
+            .filter { it.isNotEmpty() }
+            .switchIfEmpty(Single.error(Throwable(ERROR_RESULT_EMPTY)))
             .subscribeOn(mSchedulers.io())
     }
 
     companion object {
         const val ERROR_KEYWORD_EMPTY = "ERROR_KEYWORD_EMPTY"
+        const val ERROR_RESULT_EMPTY = "ERROR_RESULT_EMPTY"
     }
 
 }

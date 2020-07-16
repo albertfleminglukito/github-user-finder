@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/default_vertical_margin"
         android:layout_marginEnd="@dimen/default_item_margin"
         android:singleLine="true"
+        android:hint="@string/hint_keyword"
         app:layout_constraintBottom_toBottomOf="@id/btnSearch"
         app:layout_constraintEnd_toStartOf="@id/btnSearch"
         app:layout_constraintStart_toStartOf="parent"

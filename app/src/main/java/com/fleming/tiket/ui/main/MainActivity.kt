@@ -48,6 +48,8 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         mViewModel.errorState.observe(this, Observer {
             if (it.message == GetUsersUseCase.ERROR_KEYWORD_EMPTY)
                 Toast.makeText(this, R.string.message_get_user_keyword_empty_error, Toast.LENGTH_SHORT).show()
+            if (it.message == GetUsersUseCase.ERROR_RESULT_EMPTY)
+                Toast.makeText(this, R.string.message_get_user_empty_result_error, Toast.LENGTH_SHORT).show()
             else
                 Toast.makeText(this, R.string.message_get_user_error, Toast.LENGTH_SHORT).show()
         })
