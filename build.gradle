@@ -36,6 +36,7 @@ ext {
     recyclerViewVersion = "1.0.0"
     materialVersion = "1.1.0"
     glideVersion = "4.11.0"
+    timberVersion = "4.7.1"
 
     // dependencies injection
     daggerVersion = '2.27'

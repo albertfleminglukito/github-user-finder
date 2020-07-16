@@ -1,6 +1,8 @@
 package com.fleming.tiket.ui.main
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,13 +25,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
 
         initViewModelObserver()
     }
-
-    private fun initViewModelObserver() {
-        mViewModel.accounts.observe(this, Observer {
-            mAdapter.submitList(it)
-        })
-    }
-
     private fun initView() {
         rvAccounts?.run {
             addItemDecoration(AccountItemDecoration(context.resources))
@@ -37,8 +32,21 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             adapter = mAdapter
         }
         btnSearch?.setOnClickListener {
-            mViewModel.loadUsers()
+            mViewModel.loadUsers(etSearch.text.toString())
         }
+    }
+
+    private fun initViewModelObserver() {
+        mViewModel.accounts.observe(this, Observer {
+            mAdapter.submitList(it)
+        })
+        mViewModel.loadingState.observe(this, Observer { show ->
+            if (show) loadingBar.visibility = View.VISIBLE
+            else loadingBar.visibility = View.GONE
+        })
+        mViewModel.showMessage.observe(this, Observer {
+            Toast.makeText(this, R.string.message_get_user_error, Toast.LENGTH_SHORT).show()
+        })
     }
 
 }

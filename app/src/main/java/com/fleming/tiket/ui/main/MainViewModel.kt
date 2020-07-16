@@ -1,7 +1,7 @@
 package com.fleming.tiket.ui.main
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.fleming.tiket.base.SingleLiveEvent
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 import com.fleming.tiket.domain.entity.Account
 import com.fleming.tiket.domain.usecase.GetUsersUseCase
@@ -14,24 +14,27 @@ class MainViewModel @Inject constructor(
     private val mSchedulers: BaseSchedulerProvider
 ): BaseViewModel() {
 
-    private val mAccounts = MutableLiveData<List<Account>>()
-    val accounts: LiveData<List<Account>> = mAccounts
+    val accounts = MutableLiveData<List<Account>>()
+    val loadingState = MutableLiveData<Boolean>()
+    val showMessage = SingleLiveEvent<Any>()
 
     init {
         loadUsers()
     }
 
-    fun loadUsers() {
-        mGetUsersUseCase.execute()
+    fun loadUsers(keyword: String = "") {
+        mGetUsersUseCase.execute(keyword)
+            .doOnSubscribe { loadingState.postValue(true) }
+            .doAfterSuccess { loadingState.postValue(false) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())
             .subscribe( {
-                mAccounts.value = it
+                if (it.isEmpty()) showMessage.call()
+                else accounts.value = it
             }, {
-
+                showMessage.call()
             })
             .addTo(compositeDisposable)
     }
-
 
 }
