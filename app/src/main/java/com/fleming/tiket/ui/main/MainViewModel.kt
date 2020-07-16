@@ -17,7 +17,7 @@ class MainViewModel @Inject constructor(
     private var mPagination = UserPagination(mGetUsersUseCase, mSchedulers, compositeDisposable)
     val users: LiveData<PagedList<User>> = mPagination.getDataSource()
     val loadingState: LiveData<Boolean> = mPagination.getLoadingState()
-    val errorState: LiveData<Throwable> = mPagination.getErrorState()
+    val errorState: LiveData<Int> = mPagination.getErrorState()
 
     fun refreshSearch(keyword: String = "") {
         mPagination.refresh(keyword)

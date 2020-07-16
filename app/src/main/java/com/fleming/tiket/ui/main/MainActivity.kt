@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fleming.tiket.R
-import com.fleming.tiket.domain.usecase.GetUsersUseCase
 import com.fleming.tiket.ui.base.BaseActivity
 import com.fleming.tiket.ui.main.adapter.UserItemDecoration
 import com.fleming.tiket.ui.main.adapter.UserListAdapter
@@ -46,12 +45,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             else loadingBar.visibility = View.GONE
         })
         mViewModel.errorState.observe(this, Observer {
-            if (it.message == GetUsersUseCase.ERROR_KEYWORD_EMPTY)
-                Toast.makeText(this, R.string.message_get_user_keyword_empty_error, Toast.LENGTH_SHORT).show()
-            if (it.message == GetUsersUseCase.ERROR_RESULT_EMPTY)
-                Toast.makeText(this, R.string.message_get_user_empty_result_error, Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText(this, R.string.message_get_user_error, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
     }
 

@@ -38,7 +38,7 @@ class UserPagination(
         }
     }
 
-    fun getErrorState(): LiveData<Throwable> {
+    fun getErrorState(): LiveData<Int> {
         return Transformations.switchMap(dataSourceFactory.usersLiveData) {
             it.showErrorState
         }

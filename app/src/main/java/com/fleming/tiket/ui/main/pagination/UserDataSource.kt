@@ -2,6 +2,8 @@ package com.fleming.tiket.ui.main.pagination
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.fleming.tiket.R
+import com.fleming.tiket.base.SingleLiveEvent
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 import com.fleming.tiket.domain.entity.User
 import com.fleming.tiket.domain.usecase.GetUsersUseCase
@@ -16,7 +18,7 @@ class UserDataSource(
 ) : PageKeyedDataSource<Int, User>() {
 
     val showLoadingState = MutableLiveData<Boolean>()
-    val showErrorState = MutableLiveData<Throwable>()
+    val showErrorState = SingleLiveEvent<Int>()
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -30,7 +32,7 @@ class UserDataSource(
             .subscribe({
                 callback.onResult(it, 0, it.size, 0, 2)
             }, {
-                showErrorState.postValue(it)
+                showErrorState.value = getError(it)
             })
             .addTo(mCompositeDisposable)
     }
@@ -45,11 +47,19 @@ class UserDataSource(
             .subscribe({
                 callback.onResult(it, page)
             }, {
-                showErrorState.postValue(it)
+                showErrorState.value = getError(it)
             })
             .addTo(mCompositeDisposable)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {}
+
+    private fun getError(throwable: Throwable): Int {
+        return when (throwable.message) {
+            GetUsersUseCase.ERROR_KEYWORD_EMPTY -> R.string.message_get_user_keyword_empty_error
+            GetUsersUseCase.ERROR_RESULT_EMPTY -> R.string.message_get_user_empty_result_error
+            else -> R.string.message_get_user_error
+        }
+    }
 
 }
