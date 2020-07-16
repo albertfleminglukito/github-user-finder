@@ -3,6 +3,7 @@ package com.fleming.tiket.di.module
 import com.fleming.tiket.BuildConfig
 import com.fleming.tiket.base.RxErrorHandlingCallAdapterFactory
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
+import com.fleming.tiket.data.network.UserApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -16,9 +17,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-
 @Module(includes = [])
 class NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideUserApiService(retrofit: Retrofit): UserApiService {
+        return retrofit.create(UserApiService::class.java)
+    }
 
     @Provides
     @Singleton

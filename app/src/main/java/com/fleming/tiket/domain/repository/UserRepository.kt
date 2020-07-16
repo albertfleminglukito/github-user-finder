@@ -1,4 +1,4 @@
-package com.fleming.tiket.data
+package com.fleming.tiket.domain.repository
 
 import com.fleming.tiket.domain.entity.User
 import io.reactivex.Single

@@ -1,7 +1,7 @@
 package com.fleming.tiket.di.module
 
-import com.fleming.tiket.data.UserRepository
-import com.fleming.tiket.data.UserRepositoryImpl
+import com.fleming.tiket.data.repository.UserRepositoryImpl
+import com.fleming.tiket.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

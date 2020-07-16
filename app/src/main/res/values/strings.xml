@@ -2,5 +2,6 @@
 <resources>
     <string name="app_name">tiket</string>
     <string name="btn_search_action">Search</string>
+    <string name="message_get_user_keyword_empty_error">Keyword must not be empty</string>
     <string name="message_get_user_error">Retrieve user error occurred, Please try again</string>
 </resources>

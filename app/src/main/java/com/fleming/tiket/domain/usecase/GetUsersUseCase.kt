@@ -1,8 +1,8 @@
 package com.fleming.tiket.domain.usecase
 
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
-import com.fleming.tiket.data.UserRepository
 import com.fleming.tiket.domain.entity.User
+import com.fleming.tiket.domain.repository.UserRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -12,8 +12,15 @@ class GetUsersUseCase @Inject constructor(
 ) {
 
     fun execute(keyword: String, page: Int): Single<List<User>> {
+        if (keyword.isEmpty()) {
+            return Single.error(Throwable(ERROR_KEYWORD_EMPTY))
+        }
         return userRepository.getUserList(keyword, page)
             .subscribeOn(mSchedulers.io())
+    }
+
+    companion object {
+        const val ERROR_KEYWORD_EMPTY = "ERROR_KEYWORD_EMPTY"
     }
 
 }
