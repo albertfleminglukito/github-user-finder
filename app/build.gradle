@@ -79,8 +79,11 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
     testImplementation "androidx.room:room-testing:$rootProject.ext.roomVersion"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // test
+    testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.ext.coreTestingVersion"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.androidxJUnitVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.ext.mockitoKotlinVersion"
+    testImplementation "org.mockito:mockito-inline:$rootProject.ext.mockitoVersion"
 
 }

@@ -18,14 +18,10 @@ class MainViewModel @Inject constructor(
     val loadingState = MutableLiveData<Boolean>()
     val showMessage = SingleLiveEvent<Any>()
 
-    init {
-        loadUsers()
-    }
-
     fun loadUsers(keyword: String = "") {
         mGetUsersUseCase.execute(keyword)
             .doOnSubscribe { loadingState.postValue(true) }
-            .doAfterSuccess { loadingState.postValue(false) }
+            .doAfterTerminate { loadingState.postValue(false) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())
             .subscribe( {

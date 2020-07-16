@@ -24,6 +24,7 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         mViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
         initViewModelObserver()
+        mViewModel.loadUsers()
     }
     private fun initView() {
         rvAccounts?.run {

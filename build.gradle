@@ -53,4 +53,11 @@ ext {
 
     // database
     roomVersion = "2.2.5"
+
+    // test
+    jUnitVersion = "4.12"
+    coreTestingVersion = '2.1.0'
+    androidxJUnitVersion = "1.1.1"
+    mockitoVersion = "2.13.0"
+    mockitoKotlinVersion = "2.1.0"
 }
