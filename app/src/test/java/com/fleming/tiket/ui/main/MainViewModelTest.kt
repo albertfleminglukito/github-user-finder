@@ -17,32 +17,32 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.MockitoAnnotations
 
-@RunWith(JUnit4::class)
-class MainViewModelTest {
+//@RunWith(JUnit4::class)
+//class MainViewModelTest {
 
-    @get:Rule
-    var mInstantTaskExecutorRule = InstantTaskExecutorRule()
-
-    private val getUsersUseCase: GetUsersUseCase = mock()
-    private val schedulers: BaseSchedulerProvider =
-        TestSchedulerProvider()
-
-    private val accountsObserver: Observer<List<User>> = mock()
-    private val loadingStateObserver: Observer<Boolean> = mock()
-    private val errorStateObserver: Observer<Any> = mock()
-
-    private lateinit var mViewModel: MainViewModel
-
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        mViewModel = MainViewModel(getUsersUseCase, schedulers)
-
-        mViewModel.users.observeForever(accountsObserver)
-        mViewModel.loadingState.observeForever(loadingStateObserver)
-        mViewModel.errorState.observeForever(errorStateObserver)
-    }
-
+//    @get:Rule
+//    var mInstantTaskExecutorRule = InstantTaskExecutorRule()
+//
+//    private val getUsersUseCase: GetUsersUseCase = mock()
+//    private val schedulers: BaseSchedulerProvider =
+//        TestSchedulerProvider()
+//
+//    private val accountsObserver: Observer<List<User>> = mock()
+//    private val loadingStateObserver: Observer<Boolean> = mock()
+//    private val errorStateObserver: Observer<Any> = mock()
+//
+//    private lateinit var mViewModel: MainViewModel
+//
+//    @Before
+//    fun setUp() {
+//        MockitoAnnotations.initMocks(this)
+//        mViewModel = MainViewModel(getUsersUseCase, schedulers)
+//
+//        mViewModel.users.observeForever(accountsObserver)
+//        mViewModel.loadingState.observeForever(loadingStateObserver)
+//        mViewModel.errorState.observeForever(errorStateObserver)
+//    }
+//
 //    @Test
 //    fun `refreshSearch success`() {
 //        // given
@@ -102,4 +102,4 @@ class MainViewModelTest {
 //        then(accountsObserver).shouldHaveZeroInteractions()
 //    }
 
-}
+//}

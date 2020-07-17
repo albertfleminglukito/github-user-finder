@@ -1,4 +1,4 @@
-package com.fleming.tiket.data
+package com.fleming.tiket.domain.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.fleming.tiket.Constants
@@ -20,7 +20,7 @@ import org.junit.runners.JUnit4
 import org.mockito.MockitoAnnotations
 
 @RunWith(JUnit4::class)
-class UserRepositoryImplTest {
+class GetUsersUseCaseTest {
 
     @get:Rule
     var mInstantTaskExecutorRule = InstantTaskExecutorRule()

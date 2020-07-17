@@ -2,6 +2,20 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = '0.8.5'
+    reportsDir = file("$buildDir/jacoco")
+}
+
+android.testOptions {
+    unitTests.all {
+        jacoco {
+            includeNoLocationClasses = true
+        }
+    }
+}
 
 android {
     compileSdkVersion 29
@@ -31,6 +45,20 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+//    testOptions {
+//        junitPlatform {
+//            jacocoOptions {
+//                // here goes all jacoco config, for example
+//                xml.enabled = false
+//                csv.enabled = false
+//                html.destination file("${buildDir}/jacocoHtml")
+//            }
+//        }
+//        unitTests.all {
+//            testLogging.events = ["passed", "skipped", "failed"]
+//        }
+//    }
 }
 
 dependencies {
@@ -87,3 +115,5 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$rootProject.ext.mockitoVersion"
 
 }
+
+apply from: '../jacococonfig.gradle'
