@@ -10,8 +10,8 @@ class UserRepositoryImpl @Inject constructor(
     private val mUserApiService: UserApiService
 ): UserRepository {
 
-    override fun getUserList(keyword: String, page: Int): Single<List<User>> {
-        return mUserApiService.getUsers(keyword, page, 100)
+    override fun getUserList(keyword: String, page: Int, itemPerPage: Int): Single<List<User>> {
+        return mUserApiService.getUsers(keyword, page, itemPerPage)
             .map { it.items.map { item -> item.toEntity() } }
     }
 

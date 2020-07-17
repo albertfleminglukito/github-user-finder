@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface UserRepository {
 
-    fun getUserList(keyword: String, page: Int): Single<List<User>>
+    fun getUserList(keyword: String, page: Int, itemPerPage: Int): Single<List<User>>
 
 }

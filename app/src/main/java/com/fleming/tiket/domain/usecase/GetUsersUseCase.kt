@@ -11,11 +11,11 @@ class GetUsersUseCase @Inject constructor(
     private val mSchedulers: BaseSchedulerProvider
 ) {
 
-    fun execute(keyword: String, page: Int): Single<List<User>> {
+    fun execute(keyword: String, page: Int, itemPerPage: Int): Single<List<User>> {
         if (keyword.isEmpty()) {
             return Single.error(Throwable(ERROR_KEYWORD_EMPTY))
         }
-        return userRepository.getUserList(keyword, page)
+        return userRepository.getUserList(keyword, page, itemPerPage)
             .filter { it.isNotEmpty() }
             .switchIfEmpty(Single.error(Throwable(ERROR_RESULT_EMPTY)))
             .subscribeOn(mSchedulers.io())

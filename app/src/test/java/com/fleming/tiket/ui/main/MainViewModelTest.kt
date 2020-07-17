@@ -2,6 +2,7 @@ package com.fleming.tiket.ui.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.fleming.tiket.Constants
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 import com.fleming.tiket.domain.entity.User
 import com.fleming.tiket.domain.usecase.GetUsersUseCase
@@ -47,7 +48,7 @@ class MainViewModelTest {
 //        // given
 //        val keyword = ""
 //        val responseList = listOf(User(), User())
-//        whenever(getUsersUseCase.execute(keyword)).thenReturn(Single.just(responseList))
+//        whenever(getUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
 //
 //        // when
 //        mViewModel.refreshSearch(keyword)
@@ -66,7 +67,7 @@ class MainViewModelTest {
 //        // given
 //        val keyword = ""
 //        val responseList = listOf<User>()
-//        whenever(getUsersUseCase.execute(keyword)).thenReturn(Single.just(responseList))
+//        whenever(getUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
 //
 //        // when
 //        mViewModel.refreshSearch(keyword)
@@ -86,7 +87,7 @@ class MainViewModelTest {
 //        // given
 //        val keyword = ""
 //        val responseError = Throwable("error")
-//        whenever(getUsersUseCase.execute(keyword)).thenReturn(Single.error(responseError))
+//        whenever(getUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.error(responseError))
 //
 //        // when
 //        mViewModel.refreshSearch(keyword)

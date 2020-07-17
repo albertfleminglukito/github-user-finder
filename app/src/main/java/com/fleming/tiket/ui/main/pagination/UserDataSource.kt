@@ -2,6 +2,7 @@ package com.fleming.tiket.ui.main.pagination
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.fleming.tiket.Constants
 import com.fleming.tiket.R
 import com.fleming.tiket.base.SingleLiveEvent
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
@@ -24,7 +25,7 @@ class UserDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, User>
     ) {
-        mGetUsersUseCase.execute(mKeyword, 1)
+        mGetUsersUseCase.execute(mKeyword, 1, Constants.ITEM_PER_PAGE)
             .doOnSubscribe { showLoadingState.postValue(true) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())
@@ -39,7 +40,7 @@ class UserDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {
         val page = params.key + 1
-        mGetUsersUseCase.execute(mKeyword, page)
+        mGetUsersUseCase.execute(mKeyword, page, Constants.ITEM_PER_PAGE)
             .doOnSubscribe { showLoadingState.postValue(true) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())

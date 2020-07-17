@@ -1,6 +1,7 @@
 package com.fleming.tiket.di.module
 
 import com.fleming.tiket.BuildConfig
+import com.fleming.tiket.Constants
 import com.fleming.tiket.base.RxErrorHandlingCallAdapterFactory
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 import com.fleming.tiket.data.network.UserApiService
@@ -39,9 +40,8 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient,
                         gson: Gson,
                         schedulers: BaseSchedulerProvider): Retrofit {
-        val baseUrl = "https://api.github.com/"
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))

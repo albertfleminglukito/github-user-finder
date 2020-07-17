@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.fleming.tiket.Constants
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
 import com.fleming.tiket.domain.entity.User
 import com.fleming.tiket.domain.usecase.GetUsersUseCase
@@ -21,7 +22,7 @@ class UserPagination(
         val config = PagedList.Config.Builder()
             .setEnablePlaceholders(false)
             .setPrefetchDistance(2)
-            .setPageSize(100)
+            .setPageSize(Constants.ITEM_PER_PAGE)
             .build()
 
         return LivePagedListBuilder(dataSourceFactory, config).build()
