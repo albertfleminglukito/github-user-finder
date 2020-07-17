@@ -13,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 
 class UserDataSource(
-    private val mKeyword: String,
+    @VisibleForTesting internal val keyword: String,
     private val mGetUsersUseCase: GetUsersUseCase,
     private val mSchedulers: BaseSchedulerProvider,
     private val mCompositeDisposable: CompositeDisposable
@@ -26,7 +26,7 @@ class UserDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, User>
     ) {
-        mGetUsersUseCase.execute(mKeyword, 1, Constants.ITEM_PER_PAGE)
+        mGetUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)
             .doOnSubscribe { showLoadingState.postValue(true) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())
@@ -41,7 +41,7 @@ class UserDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {
         val page = params.key + 1
-        mGetUsersUseCase.execute(mKeyword, page, Constants.ITEM_PER_PAGE)
+        mGetUsersUseCase.execute(keyword, page, Constants.ITEM_PER_PAGE)
             .doOnSubscribe { showLoadingState.postValue(true) }
             .subscribeOn(mSchedulers.io())
             .observeOn(mSchedulers.ui())

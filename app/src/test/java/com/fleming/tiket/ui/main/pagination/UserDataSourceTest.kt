@@ -11,7 +11,6 @@ import com.fleming.tiket.domain.usecase.GetUsersUseCase
 import com.fleming.tiket.TestSchedulerProvider
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -26,22 +25,22 @@ class UserDataSourceTest {
     @get:Rule
     var mInstantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private val keyword = "asd"
-    private val getUsersUseCase: GetUsersUseCase = mock()
-    private val schedulers: BaseSchedulerProvider = TestSchedulerProvider()
+    private val mKeyword = "asd"
+    private val mGetUsersUseCase: GetUsersUseCase = mock()
+    private val mSchedulers: BaseSchedulerProvider = TestSchedulerProvider()
 
-    private val loadingStateObserver: Observer<Boolean> = mock()
-    private val errorStateObserver: Observer<Int> = mock()
+    private val mLoadingStateObserver: Observer<Boolean> = mock()
+    private val mErrorStateObserver: Observer<Int> = mock()
 
     private lateinit var mDataSource: UserDataSource
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        mDataSource = spy(UserDataSource(keyword, getUsersUseCase, schedulers, CompositeDisposable()))
+        mDataSource = spy(UserDataSource(mKeyword, mGetUsersUseCase, mSchedulers, mock()))
 
-        mDataSource.showLoadingState.observeForever(loadingStateObserver)
-        mDataSource.showErrorState.observeForever(errorStateObserver)
+        mDataSource.showLoadingState.observeForever(mLoadingStateObserver)
+        mDataSource.showErrorState.observeForever(mErrorStateObserver)
     }
 
     @Test
@@ -49,19 +48,19 @@ class UserDataSourceTest {
         // given
         val responseList = listOf(User(), User())
         val callback: PageKeyedDataSource.LoadInitialCallback<Int, User> = mock()
-        whenever(getUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
+        whenever(mGetUsersUseCase.execute(mKeyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
 
         // when
         mDataSource.loadInitial(mock(), callback)
 
         // then
         argumentCaptor<Boolean> {
-            then(loadingStateObserver).should(times(2)).onChanged(capture())
+            then(mLoadingStateObserver).should(times(2)).onChanged(capture())
             Assert.assertTrue(firstValue)
             Assert.assertFalse(secondValue)
         }
         verify(callback).onResult(responseList, 0, responseList.size, 0, 2)
-        then(errorStateObserver).shouldHaveZeroInteractions()
+        then(mErrorStateObserver).shouldHaveZeroInteractions()
     }
 
     @Test
@@ -69,19 +68,19 @@ class UserDataSourceTest {
         // given
         val responseList = listOf(User(), User())
         val callback: PageKeyedDataSource.LoadInitialCallback<Int, User> = mock()
-        whenever(getUsersUseCase.execute(keyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.error(Throwable()))
+        whenever(mGetUsersUseCase.execute(mKeyword, 1, Constants.ITEM_PER_PAGE)).thenReturn(Single.error(Throwable()))
 
         // when
         mDataSource.loadInitial(mock(), callback)
 
         // then
         argumentCaptor<Boolean> {
-            then(loadingStateObserver).should(times(2)).onChanged(capture())
+            then(mLoadingStateObserver).should(times(2)).onChanged(capture())
             Assert.assertTrue(firstValue)
             Assert.assertFalse(secondValue)
         }
         verify(callback, never()).onResult(responseList, 0, responseList.size, 0, 2)
-        then(errorStateObserver).should().onChanged(R.string.message_get_user_error)
+        then(mErrorStateObserver).should().onChanged(R.string.message_get_user_error)
     }
 
     @Test
@@ -91,19 +90,19 @@ class UserDataSourceTest {
         val responseList = listOf(User(), User())
         val params = PageKeyedDataSource.LoadParams(1, Constants.ITEM_PER_PAGE)
         val callback: PageKeyedDataSource.LoadCallback<Int, User> = mock()
-        whenever(getUsersUseCase.execute(keyword, page, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
+        whenever(mGetUsersUseCase.execute(mKeyword, page, Constants.ITEM_PER_PAGE)).thenReturn(Single.just(responseList))
 
         // when
         mDataSource.loadAfter(params, callback)
 
         // then
         argumentCaptor<Boolean> {
-            then(loadingStateObserver).should(times(2)).onChanged(capture())
+            then(mLoadingStateObserver).should(times(2)).onChanged(capture())
             Assert.assertTrue(firstValue)
             Assert.assertFalse(secondValue)
         }
         verify(callback).onResult(responseList, 2)
-        then(errorStateObserver).shouldHaveZeroInteractions()
+        then(mErrorStateObserver).shouldHaveZeroInteractions()
     }
 
     @Test
@@ -113,19 +112,19 @@ class UserDataSourceTest {
         val responseList = listOf(User(), User())
         val params = PageKeyedDataSource.LoadParams(1, Constants.ITEM_PER_PAGE)
         val callback: PageKeyedDataSource.LoadCallback<Int, User> = mock()
-        whenever(getUsersUseCase.execute(keyword, page, Constants.ITEM_PER_PAGE)).thenReturn(Single.error(Throwable()))
+        whenever(mGetUsersUseCase.execute(mKeyword, page, Constants.ITEM_PER_PAGE)).thenReturn(Single.error(Throwable()))
 
         // when
         mDataSource.loadAfter(params, callback)
 
         // then
         argumentCaptor<Boolean> {
-            then(loadingStateObserver).should(times(2)).onChanged(capture())
+            then(mLoadingStateObserver).should(times(2)).onChanged(capture())
             Assert.assertTrue(firstValue)
             Assert.assertFalse(secondValue)
         }
         verify(callback, never()).onResult(responseList, 2)
-        then(errorStateObserver).should().onChanged(R.string.message_get_user_error)
+        then(mErrorStateObserver).should().onChanged(R.string.message_get_user_error)
     }
 
     @Test
@@ -133,8 +132,8 @@ class UserDataSourceTest {
         // when
         mDataSource.loadBefore(mock(), mock())
         //then
-        then(loadingStateObserver).shouldHaveZeroInteractions()
-        then(errorStateObserver).shouldHaveZeroInteractions()
+        then(mLoadingStateObserver).shouldHaveZeroInteractions()
+        then(mErrorStateObserver).shouldHaveZeroInteractions()
     }
 
     @Test
