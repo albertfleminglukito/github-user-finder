@@ -51,15 +51,6 @@ class RxErrorHandlingCallAdapterFactory private constructor(schedulers: BaseSche
                 throwable.response()?.let { response ->
                     return RetrofitException.httpError(response.raw().request.url.toString(), response, _retrofit)
                 }
-//				return when (throwable.code()) {
-//					401 -> {
-//						// on out api 422's get metadata in the response. Adjust logic here based on your needs
-//						RetrofitException.httpErrorWithObject(response.raw().request().url().toString(), response, _retrofit)
-//					}
-//					else -> {
-//						RetrofitException.httpError(response.raw().request().url().toString(), response, _retrofit)
-//					}
-//				}
             }
             // A network error happened
             if (throwable is IOException) {

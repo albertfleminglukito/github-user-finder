@@ -1,5 +1,6 @@
 package com.fleming.tiket.ui.main.pagination
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
@@ -15,7 +16,8 @@ class UserPagination(
     mSchedulers: BaseSchedulerProvider,
     mCompositeDisposable: CompositeDisposable
 ) {
-    private var dataSourceFactory: UserDataSourceFactory =
+    @VisibleForTesting
+    internal var dataSourceFactory: UserDataSourceFactory =
         UserDataSourceFactory(mGetUsersUseCase, mSchedulers, mCompositeDisposable)
 
     fun getDataSource(): LiveData<PagedList<User>> {
