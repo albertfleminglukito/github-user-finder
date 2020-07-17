@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 
 data class UserResponse(
     @SerializedName("login")
-    val userName: String?,
+    val username: String?,
     @SerializedName("avatar_url")
     val profilePicture: String?
 ) {
 
     fun toEntity(): User {
         return User(
-            userName ?: "",
+            username ?: "",
             profilePicture ?: ""
         )
     }
