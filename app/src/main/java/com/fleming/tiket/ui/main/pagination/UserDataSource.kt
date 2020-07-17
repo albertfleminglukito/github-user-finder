@@ -1,5 +1,6 @@
 package com.fleming.tiket.ui.main.pagination
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.fleming.tiket.Constants
@@ -33,7 +34,7 @@ class UserDataSource(
             .subscribe({
                 callback.onResult(it, 0, it.size, 0, 2)
             }, {
-                showErrorState.value = getError(it)
+                showErrorState.value = getErrorMessageResource(it)
             })
             .addTo(mCompositeDisposable)
     }
@@ -48,14 +49,15 @@ class UserDataSource(
             .subscribe({
                 callback.onResult(it, page)
             }, {
-                showErrorState.value = getError(it)
+                showErrorState.value = getErrorMessageResource(it)
             })
             .addTo(mCompositeDisposable)
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, User>) {}
 
-    private fun getError(throwable: Throwable): Int {
+    @VisibleForTesting
+    internal fun getErrorMessageResource(throwable: Throwable): Int {
         return when (throwable.message) {
             GetUsersUseCase.ERROR_KEYWORD_EMPTY -> R.string.message_get_user_keyword_empty_error
             GetUsersUseCase.ERROR_RESULT_EMPTY -> R.string.message_get_user_empty_result_error
