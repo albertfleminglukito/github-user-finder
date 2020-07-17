@@ -1,5 +1,6 @@
 package com.fleming.tiket.ui.main
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import com.fleming.tiket.base.scheduler.BaseSchedulerProvider
@@ -14,7 +15,8 @@ class MainViewModel @Inject constructor(
     mSchedulers: BaseSchedulerProvider
 ): BaseViewModel() {
 
-    private var mPagination = UserPagination(mGetUsersUseCase, mSchedulers, compositeDisposable)
+    @VisibleForTesting
+    internal var mPagination = UserPagination(mGetUsersUseCase, mSchedulers, compositeDisposable)
     val users: LiveData<PagedList<User>> = mPagination.getDataSource()
     val loadingState: LiveData<Boolean> = mPagination.getLoadingState()
     val errorState: LiveData<Int> = mPagination.getErrorState()
