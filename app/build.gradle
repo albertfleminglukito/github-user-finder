@@ -45,20 +45,6 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
-//    testOptions {
-//        junitPlatform {
-//            jacocoOptions {
-//                // here goes all jacoco config, for example
-//                xml.enabled = false
-//                csv.enabled = false
-//                html.destination file("${buildDir}/jacocoHtml")
-//            }
-//        }
-//        unitTests.all {
-//            testLogging.events = ["passed", "skipped", "failed"]
-//        }
-//    }
 }
 
 dependencies {
@@ -99,13 +85,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
-
-    // database
-    implementation "androidx.room:room-runtime:$rootProject.ext.roomVersion"
-    kapt "androidx.room:room-compiler:$rootProject.ext.roomVersion"
-    implementation "androidx.room:room-ktx:$rootProject.ext.roomVersion"
-    implementation "androidx.room:room-rxjava2:$rootProject.ext.roomVersion"
-    testImplementation "androidx.room:room-testing:$rootProject.ext.roomVersion"
 
     // test
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
