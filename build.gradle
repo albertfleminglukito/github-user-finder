@@ -59,6 +59,8 @@ ext {
     jUnitVersion = "4.12"
     coreTestingVersion = '2.1.0'
     androidxJUnitVersion = "1.1.1"
+    androidxSupportTestVersion = '1.2.0'
     mockitoVersion = "2.13.0"
     mockitoKotlinVersion = "2.1.0"
+    espressoVersion = '3.2.0'
 }

@@ -22,7 +22,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.fleming.tiket"
+        applicationId "com.fleming.githubuserfinder"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -33,7 +33,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -90,8 +90,17 @@ dependencies {
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
     testImplementation "androidx.arch.core:core-testing:$rootProject.ext.coreTestingVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.androidxJUnitVersion"
+    androidTestImplementation "androidx.test:runner:$rootProject.ext.androidxSupportTestVersion"
+    androidTestImplementation "androidx.test:rules:$rootProject.ext.androidxSupportTestVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.ext.mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-inline:$rootProject.ext.mockitoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion") {
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+        exclude group: 'com.google.android.material', module: 'material'
+        exclude group: 'androidx.recyclerview', module: 'recyclerview'
+    }
 
 }
 

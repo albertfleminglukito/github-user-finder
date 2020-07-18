@@ -13,13 +13,13 @@ Library I use:
 This project contains unit test, and use jacoco to generate report.
 To generate the report and open it on browser, you can run it via terminal by running command below if you have gradle set on your environment:
 ```sh
-$ cd {your_project_directory}/tiket
+$ cd {your_project_directory}/githubuserfinder
 $ gradle openJacocoReport
 ```
 If it's not working, you can also run it via Android Studio, here's the step:
 - Open the project
 - On the right toolbar, you can find the gradle menu
-- Go to tiket -> Tasks -> reporting -> openJacocoReport
+- Go to githubuserfinder -> Tasks -> reporting -> openJacocoReport
 
 This project also integrate with Travis, but currently it not help to upload the build to app distribution or other place, but only to check whether the committed push successfully pass the test or not. If someday we need to upload some build for each test, we can set it easily.
 
