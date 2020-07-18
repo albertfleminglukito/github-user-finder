@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">tiket</string>
+    <string name="app_name">Github User Finder</string>
     <string name="btn_search_action">Search</string>
     <string name="hint_keyword">Enter your search keyword</string>
     <string name="message_get_user_keyword_empty_error">Keyword must not be empty</string>
