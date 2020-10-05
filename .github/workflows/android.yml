@@ -22,7 +22,7 @@ jobs:
       run: export FIREBASE_TOKEN=1//0g4W1Bb8gA398CgYIARAAGBASNwF-L9Irzp-8MnXjRsmp1t7G8-Z3BmUOIFtvnPXD_zUiTRNWExMTaCzMjuWluoJZZ8jhqRGAopA
 
     - name: Add Service Credentials Files
-      run: export GOOGLE_APPLICATION_CREDENTIALS=./github-user-finder-77f02-d96351f59e4a.json
+      run: export GOOGLE_APPLICATION_CREDENTIALS=./.github/Github User Finder-5ea740401fd9.json
       
     - name: Add chmod to gradlew
       run: chmod +x ./gradlew
