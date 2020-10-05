@@ -17,14 +17,17 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-      
+
     - name: Add Firebase Token
       run: export FIREBASE_TOKEN=1//0g4W1Bb8gA398CgYIARAAGBASNwF-L9Irzp-8MnXjRsmp1t7G8-Z3BmUOIFtvnPXD_zUiTRNWExMTaCzMjuWluoJZZ8jhqRGAopA
+
+    - name: Add Service Credentials Files
+      run: export GOOGLE_APPLICATION_CREDENTIALS=./github-user-finder-77f02-d96351f59e4a.json
       
-    - name: add chmod to gradlew
+    - name: Add chmod to gradlew
       run: chmod +x ./gradlew
       
-    - name: Build with Gradle
+    - name: Build APK with Gradle
       run: ./gradlew assembleDebug
 
     - name: Upload App Distribution with Gradle
