@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "622281875297",
+    "firebase_url": "https://github-user-finder-77f02.firebaseio.com",
+    "project_id": "github-user-finder-77f02",
+    "storage_bucket": "github-user-finder-77f02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622281875297:android:368109d5ff27ef88c02f20",
+        "android_client_info": {
+          "package_name": "com.fleming.githubuserfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622281875297-u6drfd241om3f31eh3lrrnkg0lgqe868.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fleming.githubuserfinder",
+            "certificate_hash": "963b46654f05060e4f4ebc092c4557c6ac3020a2"
+          }
+        },
+        {
+          "client_id": "622281875297-2o15c75slg2akoms52dsrnvm1s36q2nl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSm8sLQuFtKj8gCrHbO9WNyroFZpmRcjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622281875297-2o15c75slg2akoms52dsrnvm1s36q2nl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

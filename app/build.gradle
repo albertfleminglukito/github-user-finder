@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -32,6 +34,15 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            firebaseAppDistribution {
+                releaseNotesFile="/path/to/releasenotes.txt"
+                groups="android"
+                appId="1:622281875297:android:368109d5ff27ef88c02f20"
+            }
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -57,6 +68,7 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
     implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
+    implementation "com.google.firebase:firebase-analytics:$rootProject.ext.firebaseAnalyticsVersion"
 
     // paging
     implementation "androidx.paging:paging-runtime-ktx:$rootProject.ext.pagingVersion"
