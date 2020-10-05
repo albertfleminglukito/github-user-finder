@@ -39,4 +39,4 @@ jobs:
     - name: Upload App Distribution with Gradle
       run: ./gradlew appDistributionUploadDebug
       env:
-        FIREBASE_TOKEN=1//0g4W1Bb8gA398CgYIARAAGBASNwF-L9Irzp-8MnXjRsmp1t7G8-Z3BmUOIFtvnPXD_zUiTRNWExMTaCzMjuWluoJZZ8jhqRGAopA
+        FIREBASE_TOKEN: 1//0g4W1Bb8gA398CgYIARAAGBASNwF-L9Irzp-8MnXjRsmp1t7G8-Z3BmUOIFtvnPXD_zUiTRNWExMTaCzMjuWluoJZZ8jhqRGAopA
