@@ -21,6 +21,9 @@ jobs:
     - name: Add Firebase Token
       run: export FIREBASE_TOKEN="1//0g4W1Bb8gA398CgYIARAAGBASNwF-L9Irzp-8MnXjRsmp1t7G8-Z3BmUOIFtvnPXD_zUiTRNWExMTaCzMjuWluoJZZ8jhqRGAopA"
 
+    - name: Print Firebase Token
+      run: echo $FIREBASE_TOKEN
+
     - name: Add Service Credentials Files
       run: export GOOGLE_APPLICATION_CREDENTIALS="./.github/Github User Finder-5ea740401fd9.json"
       
